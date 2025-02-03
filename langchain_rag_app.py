@@ -1,6 +1,7 @@
+from dotenv import load_dotenv
+import os
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-#from langchain_community.vectorstores import Chroma
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.prompts import SystemMessagePromptTemplate
@@ -10,10 +11,11 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from operator import itemgetter
 
-OPENAI_API_KEY='ENTER YOUR API KEY HERE'
+load_dotenv('.env.dev')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Load PDF file
-loader = PyMuPDFLoader('/workspaces/uplimit_langchain/pil.3474.pdf')
+loader = PyMuPDFLoader('/workspaces/Uplimit_Langchain_Course/Week1/pil.3474.pdf')
 data = loader.load()
 
 # Split and Embed

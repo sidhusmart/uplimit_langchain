@@ -1,14 +1,14 @@
+from dotenv import load_dotenv
+import os
 import asyncio
 import aiohttp
 import langchain_rag_app
 
+# Load environment variables from .env.local
+load_dotenv('.env.dev')
+
 async def telegram_bot_response():
-    import os
-    os.environ['LANGCHAIN_TRACING_V2'] = 'true'
-    os.environ['LANGCHAIN_ENDPOINT'] = "https://api.smith.langchain.com"
-    os.environ['LANGCHAIN_API_KEY'] = "ENTER LANGCHAIN API KEY"
-    os.environ['LANGCHAIN_PROJECT'] = "ENTER LANGCHAIN PROJECT"
-    bot_token = 'ENTER YOUR BOT TOKEN HERE'
+    bot_token = os.getenv('bot_token')
     api_url = f'https://api.telegram.org/bot{bot_token}/getUpdates'
     send_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
     offset = None  # Variable to manage the offset of updates
