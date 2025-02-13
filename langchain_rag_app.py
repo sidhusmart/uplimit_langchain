@@ -15,7 +15,7 @@ load_dotenv('.env.dev')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Load PDF file
-loader = PyMuPDFLoader('/workspaces/Uplimit_Langchain_Course/Week1/pil.3474.pdf')
+loader = PyMuPDFLoader('pil.3474.pdf')
 data = loader.load()
 
 # Split and Embed
@@ -45,7 +45,7 @@ qna_prompt_template = ChatPromptTemplate.from_messages(
 )
 
 # Create LLM
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY)
+llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0, openai_api_key=OPENAI_API_KEY)
 
 # Create Retriever that adds the context
 retriever = vector_store.as_retriever()
